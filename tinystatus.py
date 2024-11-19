@@ -35,7 +35,8 @@ PLATFORM = platform.system().lower()
 async def check_http(url, expected_code, selfsigned):
     async with aiohttp.ClientSession() as session:
         try:
-            async with session.get(url, ssl=not selfsigned) as response:
+            # async with session.get(url, ssl=not selfsigned) as response:
+            async with session.get(url) as response:
                 return response.status == expected_code
         except Exception as err:
             print("error with ", url, err)
